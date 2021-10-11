@@ -1,14 +1,6 @@
+let employeeArr = [];
+let flag = true;
 class EmployeePayrollData {
-
-    constructor(...params) {
-        this.name = params[0];
-        this.salary = params[1];
-        this.gender = params[2];
-        this.startDate = params[3];
-        this.departments = params[4];
-        this.notes = params[5];
-    }
-
     get name() { return this._name; }
     set name(name) {
         let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$')
@@ -34,8 +26,13 @@ class EmployeePayrollData {
 
     get startDate() { return this._startDate; }
     set startDate(startDate) {
-        if (new Date() < startDate) throw 'START DATE IS INCORECT';
-        else this._startDate = startDate;
+        let thirtyDaysInMiliSec = 30*24*60*60*1000;
+        if(startDate <= new Date() &&  Date.now()-startDate < thirtyDaysInMiliSec)
+            this._startDate = startDate; 
+        else{
+            flag = false;
+            alert('Invalid date');
+        }
     }
     get departments() { return this._departments }
     set departments(departments) {
@@ -48,21 +45,13 @@ class EmployeePayrollData {
 
 
     toString() {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const empDate = !this.startDate ? "not defined" :
-            this.startDate.toLocaleDateString("en-US", options);
-        return "name=" + this.name + ", salary=" + this.salary + ", gender=" + this.gender + ", start date=" + this.empDate + ", department=" + this.departments;
+        return "id="+ this.id +", name="+ this.name +", salary="+ this.salary+", gender="+ this.gender+", start date="+ this.startDate+", department="+this.departments;
     }
 }
 
-try {
-    let newEmployeePayrollData = new EmployeePayrollData(1, "Terissa", 30000, 'm', new Date('2022-01-01'));
-    console.log("employeePayrollData: " + newEmployeePayrollData.toString());
-} catch (e) {
-    console.error(e);
-}
+
 function save(){
-    const name = document.querySelector("#name");
+    const name = document.querySelector("#name");   
     let departments = new Array();
     let markedCheckbox = document.getElementsByName('department');  
     for (var checkbox of markedCheckbox) {  
@@ -81,8 +70,18 @@ function save(){
     const year = document.querySelector('#year');
     const date = new Date(day.value+"/"+month.value+"/"+year.value);
     const notes = document.querySelector('#notes'); 
-
-    employeeArr.push(new EmployeePayrollData(name.value,salary.value,gender,date,departments,notes.value));
+    let empObject = new EmployeePayrollData();
+    flag = true;
+    empObject.name = name.value;
+    empObject.salary = salary.value;
+    empObject.gender = gender;
+    empObject.startDate = date;
+    empObject.departments = departments;
+    empObject.notes = notes.value;
+    if(flag) {
+        employeeArr.push(empObject);
+        alert('Successfully added employee');
+    } 
 
     console.log(employeeArr);
 }
