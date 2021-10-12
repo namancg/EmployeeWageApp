@@ -44,6 +44,7 @@ window.addEventListener('DOMContentLoaded', (event) =>{
   const save = () => {
     try{
       let employeePayrollData = createEmployeePayroll();
+      updateStorage(employeePayrollData);
       
     }
     catch(e){
@@ -96,4 +97,17 @@ window.addEventListener('DOMContentLoaded', (event) =>{
   
   const getInputElementValue =(id) => {
     return document.getElementById(id).value;
+  }
+
+  function updateStorage(employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+  
+    if(employeePayrollList != undefined) {
+      employeePayrollList.push(employeePayrollData);
+    }
+    else {
+      employeePayrollList = [employeePayrollData]
+    }
+    alert(employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
   }
