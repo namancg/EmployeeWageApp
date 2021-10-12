@@ -1,85 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap "
-        rel="stylesheet">
-    <link rel="stylesheet" href="\css\payroll_form.css">
-    <title>Employee payroll form</title>
-    <script src="../js/EmployeePayrollData.js"></script>
-</head>
-
-<body>
-    <header class="header-content header">
-        <div class="logo-content">
-            <img src="../assets/images/logo.png" alt="">
-            <div>
-                <span class="emp-text">EMPLOYEE</span><br>
-                <span class="emp-text emp-payroll">PAYROLL</span>
-            </div>
-        </div>
-    </header>
-    <div class="form-content">
-        <form class="form" action="#" onsubmit="save();return false">
-            <div class="form-head">
-                Employee Payroll form
-            </div>
-            <div class= "row-content">
-                <label class = "label text" for="name">Name</label>
-                <input class="input" type="text" id="name" name ="name" placeholder="Your name.." required>
-            </div>
-            <div class = "row-content">
-                <label class ="label text" for="profile">Profile image</label>
-                <div class ="profile-radio-content">
-                    <label>
-                        <input type="radio" id="profile1" name="profile" value="..assets/profile-images/Ellipse -1.png"required>
-                        <img class ="profile" id ="image1" src="../assets/profile-images/Ellipse -1.png">
-                    </label>
-                    <label>
-                        <input type="radio" id="profile1" name ="profile" value="../assets/profile-images/Ellipse -3.png" required>
-                        <img class="profile" id='image1' src="../assets/profile-images/Ellipse -3.png">
-                    </label>
-                    <label>
-                        <input type="radio" id="profile1" name ="profile" value="../assets/profile-images/Ellipse -8.png" required>
-                        <img class="profile" id='image1' src="../assets/profile-images/Ellipse -8.png">
-                    </label>
-                    <label>
-                        <input type="radio" id="profile1" name ="profile" value="../assets/profile-images/Ellipse -7.png" required>
-                        <img class="profile" id='image1' src="../assets/profile-images/Ellipse -7.png">
-                        </label>
-                </div>
-            </div>
-            <div class="row-content">
-                <label class="label text" for="gender">Gender</label>
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initail-scale=1.0">
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+            <title>Employee payroll form</title>
+            <link rel="stylesheet" href="../css/payroll_form.css">
+            <script src="../js/EmployeePayrollData.js"></script>
+            <script defer src="../js/EmployeeWage.js"></script>
+    </head>
+    <body>
+        <header class="header-content header">
+            <div class="logo-content">
+                <img src="../assets/images/logo.png" alt="">
                 <div>
-                    <input type ="radio" id="male" name="gender" value="male">
-                    <label class ="text" for="male">Male</label>
-                    <input type="radio" id="female" name="gender" value="female">
-                    <label class="text" for="female">Female</label>
+                    <span class="emp-text">EMPLOYEE</span><br>
+                    <span class="emp-text emp-payroll">PAYROLL</span>
                 </div>
             </div>
-            <div>
+        </header>
+        <div class="form-content">
+            <form class="form" action="#" onsubmit="save();return false">
+                <div class="form-head">
+                    Employee Payroll form
+                </div>
+                <div class= "row-content">
+                    <label class = "label text" for="name">Name</label>
+                    <input class="input" type="text" id="name" name ="name" placeholder="Your name.." required>
+                    <error-output class ="text-error" for="text"></error-output>
+                </div>
+                <div class="row-content">
+                    <label class="label text" for="profile">Profile image</label>
+                    <div class="profile-radio-content">
+                        <label>
+                            <input type="radio" id="profile1" name ="profile" value="../assets/profile-images/Ellipse -3.png" required>
+                            <img class="profile" id='image1' src="../assets/profile-images/Ellipse -3.png">
+                        </label>
+                        <label>
+                            <input type="radio" id="profile1" name ="profile" value="../assets/profile-images/Ellipse 1.png" required>
+                            <img class="profile" id='image1' src="../assets/profile-images/Ellipse 1.png">
+                        </label>
+                        <label>
+                            <input type="radio" id="profile1" name ="profile" value="../assets/profile-images/Ellipse -8.png" required>
+                            <img class="profile" id='image1' src="../assets/profile-images/Ellipse -8.png">
+                        </label>
+                        <label>
+                            <input type="radio" id="profile1" name ="profile" value="../assets/profile-images/Ellipse -7.png" required>
+                            <img class="profile" id='image1' src="../assets/profile-images/Ellipse -7.png">
+                        </label>
+                    </div>
+                </div>
+                <div class="row-content">
+                    <label class="label text" for="gender">Gender</label>
+                    <div>
+                        <input type="radio" id="male" name = "gender" value="male" checked>
+                        <label class="text" for="male">Male</label>
+                        <input type="radio" id="female" name = "gender" value="female">
+                        <label class="text" for="female">Female</label>
+                    </div>
+                </div>
                 <div class="row-content">
                     <label class="label text" for ="department">Department</label>
-                <div>
-                    <input class="checkbox" type="checkbox" id="hr" name ="department" value="HR">
-                    <label class="text" for="hr">HR</label>
-                    <input class="checkbox" type="checkbox" id="sales" name ="department" value="sales">
-                    <label class="text" for="sales">Sales</label>
-                    <input class="checkbox" type="checkbox" id="finance" name ="department" value="finance">
-                    <label class="text" for="finance">Finance</label>
-                    <input class="checkbox" type="checkbox" id="others" name ="department" value="others">
-                    <label class="text" for="others">Others</label>
+                    <div>
+                        <input class="checkbox" type="checkbox" id="hr" name ="department" value="HR">
+                        <label class="text" for="hr">HR</label>
+                        <input class="checkbox" type="checkbox" id="sales" name ="department" value="sales" >
+                        <label class="text" for="sales">Sales</label>
+                        <input class="checkbox" type="checkbox" id="finance" name ="department" value="finance" >
+                        <label class="text" for="finance">Finance</label>
+                        <input class="checkbox" type="checkbox" id="others" name ="department" value="others">
+                        <label class="text" for="others">Others</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row-content">
-                <label class="label text" for="salary">Choose your salary:</label>
-                <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000">
-                <output class="salary-output text" for="salary">400000</output>
-            </div>
+                <div class="row-content">
+                    <label class="label text" for="salary">Choose your salary:</label>
+                    <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000">
+                    <output class="salary-output text" for="salary">400000</output>
                 </div>
                 <div class="row-content">
                     <label class="label text" for="startDate">Start Date</label>
@@ -131,16 +127,14 @@
                             <option value ="Dec">December</option>
                         </select>
                         <select id="year" name ="Year">
-                            <option value="2020">2021</option>
+                            <option value="2021">2021</option>
                             <option value="2020">2020</option>
                             <option value="2019">2019</option>
                             <option value="2018">2018</option>
                             <option value="2017">2017</option>
                             <option value="2016">2016</option>
-                            <option value="2016">2015</option>
-                            
                         </select>
-                        
+                        <error-output class ="startDate-error" for="startDate"></error-output>
                     </div>
                 </div>
                 <div class="row-content">
@@ -154,16 +148,7 @@
                         <button type="reset" class="button resetButton">Reset</button>
                     </div>
                 </div>
-            </div>
-        </form>
-    </div>
-    <script>
-        const salary = document.querySelector('#salary');
-        const output  = document.querySelector('.salary-output');
-        output.textContent = salary.value;
-        salary.addEventListener('input', function(){
-            output.textContent = salary.value;
-        });
-    </script>
-</body>
+            </form>
+        </div>
+    </body>
 </html>
