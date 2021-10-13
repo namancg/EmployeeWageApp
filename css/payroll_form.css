@@ -157,6 +157,10 @@ padding: 7px 7px;
 border: 1px solid #707070;
 cursor: pointer;
 }
+.textarea{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 
 .submitButton {
   border :none;
