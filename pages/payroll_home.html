@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head>  
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,12 +14,12 @@
 
 <body>
     <header class="header-content header">
-        <div class="logo content">
+        <div class="logo-content">
             <img src="../assets/images/logo.png" alt="">
-        </div>
-        <div>
-            <span class="emp-text">EMPLOYEE</span><br>
-            <span class="emp-text emp-payroll">PAYROLL</span>
+            <div>
+                <span class="emp-text">EMPLOYEE</span><br>
+                <span class="emp-text emp-payroll">PAYROLL</span>
+            </div>
         </div>
     </header>
     <div class="main-content">
@@ -30,7 +30,39 @@
             <a href="../pages/payroll_form.html" class="add-button">
                 <img src="../assets/icons/add-24px.svg">Add User</a>
         </div>
-    </div>
+    
+    <div class="table-main">
+        <table id="display" class="table">
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Department</th>
+                <th>Salary</th>
+                <th>Start Date</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <td>
+                    <img src="../assets/profile-images/Ellipse -2.png" alt="" class="profile">
+                </td>
+                <td>Naman Chandra</td>
+                <td>Male</td>
+                <td>
+                    <div class="dept-label">HR</div>
+                    <div class="dept-label">Finance</div>
+                </td>
+                <td>3000000</td>
+                <td>1 Nov 2020</td>
+                <td>
+                    <img src="../assets/icons/delete-black-18dp.svg" alt="Delete" id="1" onclick="remove(this)">
+                    <img src="../assets/icons/create-black-18dp.svg" alt="Edit" id="1" onclick="update(this)">
+                </td>
+            </tr>
+        </table>
+    </div>  
+</div>
+
 </body>
 
 </html>
