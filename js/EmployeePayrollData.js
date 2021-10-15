@@ -1,8 +1,9 @@
-let employeeArr = [];
-let flag = true;
 class EmployeePayrollData {
-
-    //setters and getters for employee dets
+    //getter and setter
+    get id() { return this._id;}
+    set id(id) {
+        this._id = id;
+    }
     get name() { return this._name; }
     set name(name) {
         let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z]{2,}$');
@@ -27,19 +28,17 @@ class EmployeePayrollData {
         let thirtyDaysInMiliSec = 30*24*60*60*1000;
         if(startDate <= new Date() &&  Date.now()-startDate < thirtyDaysInMiliSec)
             this._startDate = startDate; 
-        else{
-            flag = false;
-            alert('Invalid date');
-        }
+        else throw 'startDate is Incorrect';
     }
     get departments() { return this._departments}
     set departments(departments){
         this._departments = departments;
     }
-    get notes() { return notes}
+    get notes() { return this._notes}
     set notes(notes) {
         this._notes = notes;
     }
+
     toString() {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const empDate = this.startDate === undefined ? "undefined" : this.startDate.toLocaleDateString("en-US", options);
