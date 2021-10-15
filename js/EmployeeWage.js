@@ -145,7 +145,7 @@ const setValue = (id, value) => {
   element.value = value;
 }
 
-onst checkForUpdate = () => {
+const checkForUpdate = () => {
   const employeePayrollJson = localStorage.getItem('editEmp');
   isUpdate = employeePayrollJson ? true : false;
   if(!isUpdate) return;
@@ -178,3 +178,4 @@ const setSelectedValues = (propertyValue, value) => {
       else if (item.value === value)
         item.checked = true;
   });
+}
