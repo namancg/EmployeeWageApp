@@ -1,6 +1,5 @@
 let isUpdate = false;
 let employeePayrollObj  = {};
-
 window.addEventListener('DOMContentLoaded', (event) =>{
   const name = document.querySelector('#name');
   const textError = document.querySelector('.text-error');
@@ -49,13 +48,36 @@ const save = (event) => {
   event.stopPropagation();
   try{
     setEmployeePayrollObject();
-    createAndUpdateStorage();
-    resetForm();
-    window.location.replace(site_properties.home_page);
+    if(site_properties.use_local_storage.match("true")){
+      createAndUpdateStorage();
+      resetForm();
+      window.location.replace(site_properties.home_page);
+    }
+    else {
+      createOrUpdateEmployeePayroll();
+    }
   }
   catch(e){
+    console.log(e);
     return;
   }
+}
+
+const createOrUpdateEmployeePayroll = () => {
+  let postUrl = site_properties.server_url;
+  let methodCall = "POST";
+  if(isUpdate) {
+    methodCall = "PUT";
+    postUrl = postUrl + employeePayrollObj.id.toString();
+  }
+  makeServiceCall(methodCall, postUrl, true, employeePayrollObj)
+      .then(responceText => {
+        resetForm();
+        window.location.replace(site_properties.home_page);
+      })
+      .catch(error => {
+        throw error;
+      });
 }
 
 const setEmployeePayrollObject = () => {
@@ -126,7 +148,7 @@ const resetForm = () => {
   setValue('#notes','');
   setValue('#day','1');
   setValue('#month','January');
-  setValue('#year','2020');
+  setValue('#year','2021');
   setTextValue('#salary-value',400000);
 }
 
