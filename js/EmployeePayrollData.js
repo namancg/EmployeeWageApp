@@ -1,9 +1,6 @@
 class EmployeePayrollData {
     //getter and setter
-    get id() { return this._id;}
-    set id(id) {
-        this._id = id;
-    }
+     id;
     get name() { return this._name; }
     set name(name) {
         let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z]{2,}$');
