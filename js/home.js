@@ -12,7 +12,7 @@ const getEmployeePayrollDataFromStorage = () => {
 
 const createInnerHtml = () => {
     if (empPayrollList.length == 0) {
-        document.querySelector('#table-display').innerHTML = `<h2 class="no-emp-notification">No employees</h2>`;
+        document.querySelector('#table-display').innerHTML = `<h2 class="no-emp-notification">Oops... No employees</h2>`;
         return;
     }
     const headerHtml = "<tr><th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th></tr>";
@@ -28,8 +28,8 @@ const createInnerHtml = () => {
             <td>${empPayrollData._salary}</td>
             <td>${stringifyDate(empPayrollData._startDate)}</td>
             <td>
-                <img id="${empPayrollData._id}" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
-                <img id="${empPayrollData._id}" alt="edit" onclick="update(this)" src="../assets/icons/create-black-18dp.svg">
+                <img id="${empPayrollData.id}" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
+                <img id="${empPayrollData.id}" alt="edit" onclick="update(this)" src="../assets/icons/create-black-18dp.svg">
             </td>
         </tr>
         `;
@@ -45,13 +45,11 @@ const getDeptHtml = (deptList) => {
     return deptHtml;
 }
 
-
-
 const remove = (node) => {
-    let empPayrollData = empPayrollList.find(empData => empData._id == node._id);
+    let empPayrollData = empPayrollList.find(empData => empData.id == node.id);
     if (!empPayrollData) return;
-    const index = empPayrollList.map(empData => empData._id)
-        .indexOf(empPayrollData._id);
+    const index = empPayrollList.map(empData => empData.id)
+        .indexOf(empPayrollData.id);
     empPayrollList.splice(index, 1);
     localStorage.setItem("EmployeePayrollList", JSON.stringify(empPayrollList));
     document.querySelector(".emp-count").textContent = empPayrollList.length;
@@ -59,8 +57,8 @@ const remove = (node) => {
 }
 
 const update = (node) => {
-    let empPayrollData = empPayrollList.find(empData => empData._id == node.id);
-    if(! empPayrollData) return;
-    localStorage.setItem('editEmp',JSON.stringify(empPayrollData));
+    let empPayrollData = empPayrollList.find(empData => empData.id == node.id);
+    if (!empPayrollData) return;
+    localStorage.setItem('editEmp', JSON.stringify(empPayrollData));
     window.location.replace(site_properties.add_emp_payroll_page);
 }
